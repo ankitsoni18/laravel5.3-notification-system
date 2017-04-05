@@ -1,0 +1,20 @@
+{
+    "name": "ankit/notification",
+    "description": "laravel notification system",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ankit Soni",
+            "email": "ankitsoni.ss18@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4":{
+            "ankit\\notification\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "~5"
+    }
+}
