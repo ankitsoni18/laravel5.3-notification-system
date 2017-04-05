@@ -6,6 +6,7 @@ use ankit\notification\Notification;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class NotificationController extends Controller
 {
@@ -24,13 +25,20 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         $users = User::all();
-        foreach ($users as $user) {
-            $user->notifications()->create([
-                'title' => $request->get('title'),
-                'body' => $request->get('body'),
-                'user_id' => $user->id,
-            ]);
+        if (count($users) > 0) {
+            foreach ($users as $user) {
+                $user->notifications()->create([
+                    'title' => $request->get('title'),
+                    'body' => $request->get('body'),
+                    'user_id' => $user->id,
+                ]);
+            }
+            Session::flash('send_notification', 'Notification Send Successfully');
+            return redirect(route('notifications.create'));
+        } else {
+            Session::flash('no_user_found', 'No User Found To Send Notification');
+            return redirect(route('notifications.create'));
         }
-        return redirect(route('notifications.create'));
+
     }
 }

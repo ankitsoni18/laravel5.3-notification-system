@@ -21,6 +21,16 @@
   <body>
     <div class="container" style="margin-top:25px;background:#dad6d6;padding:15px;">
         <div class="row">
+          @if (Session::has('no_user_found'))
+              <div class="alert alert-danger">
+                  {{ Session::get('no_user_found') }}
+              </div>
+          @endif
+          @if (Session::has('send_notification'))
+              <div class="alert alert-success">
+                  {{ Session::get('send_notification') }}
+              </div>
+          @endif
           <a href="{{ route('notifications.index') }}" class="btn btn-primary">List Notifications</a>
             <div class="col-sm-10">
                 <form method="post" action="{{ route('notifications.store') }}">
