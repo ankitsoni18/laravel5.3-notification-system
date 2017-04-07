@@ -16,7 +16,7 @@ class NotificationServiceProvider extends ServiceProvider
     {
         // loading the routes file
         require __DIR__ . '/Http/web.php';
-
+        $this->loadRoutesFrom(__DIR__ . '/Http/web.php');
         // path for view files
 
         $this->loadViewsFrom(__DIR__ . '/../views', 'notification');
